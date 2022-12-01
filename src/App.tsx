@@ -10,14 +10,12 @@ export default function App() {
 
   return (
     <main className={theme}>
-      <section className='flex flex-col transition-all ease-in-out items-center w-full h-screen text-black bg-zinc-200 dark:bg-zinc-900 dark:text-white py-4 px-8'>
+      <section className='flex flex-col items-center w-full h-screen px-8 py-4 text-white transition-all ease-in-out bg-gradient-to-b from-red-600 via-red-600 to-red-800 dark:bg-gradient-to-b dark:from-red-700 dark:via-red-700 dark:to-red-900'>
         <nav className='flex flex-row'>
-          <h1 className='text-4xl font-bold text-red-600 dark:text-rose-500'>
-            Christmas Whishlist
-          </h1>
+          <h1 className='text-4xl font-bold'>Christmas Whishlist</h1>
           <button
             onClick={() => handleTheme()}
-            className='w-8 h-8 bg-rose-500 text-white font-bold rounded-full right-8 absolute'>
+            className='absolute w-8 h-8 text-xl font-bold rounded-full right-8'>
             {theme === 'light' ? '☀' : '🌑'}
           </button>
         </nav>
