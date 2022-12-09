@@ -12,14 +12,14 @@ export default function List({
 }) {
   return (
     <section className='h-full min-h-screen'>
-      <div className='px-8 py-4  bg-white rounded-2xl opacity-95 shadow-lg'>
+      <div className='mx-8 my-4 p-2'>
         {whistList.map((item) => {
           return (
             <Item
               key={item.id}
               id={item.id}
               src={item.image}
-              name={item.name}
+              name={item.title}
               price={item.price}
               addToCart={addToCart}
               deleteItem={deleteItem}

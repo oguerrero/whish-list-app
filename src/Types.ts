@@ -1,6 +1,6 @@
 export type ItemType = {
     id: number
     image: string
-    name: string
+    title: string
     price: string
 }

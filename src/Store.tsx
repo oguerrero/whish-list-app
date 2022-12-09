@@ -11,14 +11,14 @@ export default function Store({
   addToCart: Function
 }) {
   return (
-    <section className='grid grid-cols-4 gap-4 px-8 py-4 mb-4 bg-white rounded-2xl opacity-95 shadow-lg'>
+    <section className='grid md:grid-cols-3 lg:grid-cols-5 mx-8 my-4 rounded-xl gap-4'>
       {storeList.map((item) => {
         return (
           <StoreItem
             key={item.id}
             id={item.id}
             src={item.image}
-            name={item.name}
+            name={item.title}
             price={item.price}
             addToWhishList={addToWhishList}
             addToCart={addToCart}
