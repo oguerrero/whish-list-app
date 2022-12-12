@@ -3,15 +3,15 @@ import { ItemType } from './Types'
 
 export default function Store({
   storeList,
-  addToWhishList,
-  addToCart
+  addToWishList,
+  addToCart,
 }: {
   storeList: ItemType[]
-  addToWhishList: Function
+  addToWishList: Function
   addToCart: Function
 }) {
   return (
-    <section className='grid md:grid-cols-3 lg:grid-cols-5 mx-8 my-4 rounded-xl gap-4'>
+    <section className='grid md:grid-cols-3 lg:grid-cols-5 mx-8 my-4 rounded-xl gap-4 md:w-fit'>
       {storeList.map((item) => {
         return (
           <StoreItem
@@ -20,7 +20,7 @@ export default function Store({
             src={item.image}
             name={item.title}
             price={item.price}
-            addToWhishList={addToWhishList}
+            addToWishList={addToWishList}
             addToCart={addToCart}
           />
         )

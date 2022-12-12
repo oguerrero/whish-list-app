@@ -7,7 +7,7 @@ import Store from './Store'
 export default function App() {
 
   const [theme, setTheme] = useState('light')
-  const [whishList, setWhishList] = useState<ItemType[]>([])
+  const [wishList, setWishList] = useState<ItemType[]>([])
   const [page, setPage] = useState('Store')
   const [data, setData] = useState([])
 
@@ -24,9 +24,9 @@ export default function App() {
   useEffect(() => {
     loadData()
     const initialList: ItemType[] = JSON.parse(
-      localStorage.getItem('whishlist')!
+      localStorage.getItem('wishlist')!
     )
-    if (initialList) setWhishList(initialList)
+    if (initialList) setWishList(initialList)
   }, [])
 
   const handleTheme = () => {
@@ -34,38 +34,38 @@ export default function App() {
   }
 
   const handlePage = (change: String) => {
-    change === 'Store' ? setPage('Whishlist') : setPage('Store')
+    change === 'Store' ? setPage('Wishlist') : setPage('Store')
   }
 
   const deleteItem = (id: number) => {
-    let tempList = whishList
+    let tempList = wishList
     const index = tempList.findIndex((item) => item.id === id)
     tempList.splice(index, 1)
 
-    setWhishList([...tempList])
-    localStorage.setItem('whishlist', JSON.stringify([...tempList]))
+    setWishList([...tempList])
+    localStorage.setItem('wishlist', JSON.stringify([...tempList]))
   }
 
   const addToCart = (id: number) => {
-    let tempList = whishList
+    let tempList = wishList
     const index = tempList.findIndex((item) => item.id === id)
     tempList.splice(index, 1)
 
-    setWhishList([...tempList])
-    localStorage.setItem('whishlist', JSON.stringify([...tempList]))
+    setWishList([...tempList])
+    localStorage.setItem('wishlist', JSON.stringify([...tempList]))
   }
 
-  const addToWhishList = (id: number) => {
-    let tempList = whishList
+  const addToWishList = (id: number) => {
+    let tempList = wishList
     tempList.push(data[id - 1])
 
-    setWhishList([...new Map(tempList.map((v) => [v.id, v])).values()])
-    localStorage.setItem('whishlist', JSON.stringify([...tempList]))
+    setWishList([...new Map(tempList.map((v) => [v.id, v])).values()])
+    localStorage.setItem('wishlist', JSON.stringify([...tempList]))
   }
 
   return (
     <main className={`min-h-screen ${theme}`}>
-      <section className='flex flex-col items-center w-full px-8 py-4 text-black transition-all ease-in-out bg-white dark:bg-gradient-to-b dark:bg-zinc-900'>
+      <section className='flex flex-col items-center w-fit px-8 py-4 text-black transition-all ease-in-out bg-white dark:bg-gradient-to-b dark:bg-zinc-900'>
         <nav className='flex flex-row gap-4 pt-2 pb-6'>
           <button
             className='px-2 py-1 text-2xl font-bold text-black dark:text-white group'
@@ -80,8 +80,8 @@ export default function App() {
           <button
             className='px-2 py-1 text-2xl font-bold text-black dark:text-white group'
             onClick={() => handlePage('Store')}>
-            Whishlist
-            {page === 'Whishlist' ? (
+            Wishlist
+            {page === 'Wishlist' ? (
               <span className='block max-w-full transition-all duration-500 h-0.5 bg-black dark:bg-white'></span>
             ) : (
               <span className='block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-black dark:bg-white'></span>
@@ -94,9 +94,9 @@ export default function App() {
           </button>
         </nav>
         <div>
-          {page === 'Whishlist' && (
+          {page === 'Wishlist' && (
             <List
-              whistList={whishList}
+              whistList={wishList}
               addToCart={addToCart}
               deleteItem={deleteItem}
             />
@@ -104,7 +104,7 @@ export default function App() {
           {page === 'Store' && (
             <Store
               storeList={data}
-              addToWhishList={addToWhishList}
+              addToWishList={addToWishList}
               addToCart={addToCart}
             />
           )}
