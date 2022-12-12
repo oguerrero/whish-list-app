@@ -65,7 +65,7 @@ export default function App() {
 
   return (
     <main className={`min-h-screen ${theme}`}>
-      <section className='flex flex-col items-center w-fit px-8 py-4 text-black transition-all ease-in-out bg-white dark:bg-gradient-to-b dark:bg-zinc-900'>
+      <section className='flex flex-col items-center px-8 py-4 text-black transition-all ease-in-out bg-white dark:bg-gradient-to-b dark:bg-zinc-900'>
         <nav className='flex flex-row gap-4 pt-2 pb-6'>
           <button
             className='px-2 py-1 text-2xl font-bold text-black dark:text-white group'
