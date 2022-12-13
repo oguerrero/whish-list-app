@@ -11,7 +11,7 @@ export default function List({
   deleteItem: Function
 }) {
   return (
-    <section className='h-full min-h-screen'>
+    <section className='h-full min-h-screen overflow-hidden'>
       <div className='mx-8 my-4 p-2'>
         {whistList.map((item) => {
           return (

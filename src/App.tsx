@@ -2,27 +2,30 @@ import { useEffect, useState } from 'react'
 import { ItemType } from './Types'
 import List from './List'
 import Store from './Store'
-// import data from './data.json'
+import data from './data.json'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function App() {
-
   const [theme, setTheme] = useState('light')
   const [wishList, setWishList] = useState<ItemType[]>([])
   const [page, setPage] = useState('Store')
-  const [data, setData] = useState([])
+  // const [data, setData] = useState(localData)
 
-  const getData = async () => {
-    const res = await fetch('https://fakestoreapi.com/products')
-    const data = await res.json()
-    return data
-  }
+  // ? Methods for fetching and setting data from api
+  // ? Disabled to avoid down times in api provider
+  // const getData = async () => {
+  //   const res = await fetch('https://fakestoreapi.com/products')
+  //   const data = await res.json()
+  //   return data
+  // }
 
-  const loadData = async () => {
-    setData(await getData())
-  }
+  // const loadData = async () => {
+  //   setData(await getData())
+  // }
 
   useEffect(() => {
-    loadData()
+    // loadData() // -> fetch data from api
     const initialList: ItemType[] = JSON.parse(
       localStorage.getItem('wishlist')!
     )
@@ -44,6 +47,16 @@ export default function App() {
 
     setWishList([...tempList])
     localStorage.setItem('wishlist', JSON.stringify([...tempList]))
+    toast.error('Item Deleted', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored'
+    })
   }
 
   const addToCart = (id: number) => {
@@ -53,6 +66,16 @@ export default function App() {
 
     setWishList([...tempList])
     localStorage.setItem('wishlist', JSON.stringify([...tempList]))
+    toast.info('Item Added to 🛒', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored'
+    })
   }
 
   const addToWishList = (id: number) => {
@@ -61,10 +84,20 @@ export default function App() {
 
     setWishList([...new Map(tempList.map((v) => [v.id, v])).values()])
     localStorage.setItem('wishlist', JSON.stringify([...tempList]))
+    toast.success('Item Added to 🎁', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored'
+    })
   }
 
   return (
-    <main className={`min-h-screen ${theme}`}>
+    <main className={`min-h-screen overflow-hidden ${theme}`}>
       <section className='flex flex-col items-center px-8 py-4 text-black transition-all ease-in-out bg-white dark:bg-gradient-to-b dark:bg-zinc-900'>
         <nav className='flex flex-row gap-4 pt-2 pb-6'>
           <button
@@ -109,6 +142,18 @@ export default function App() {
             />
           )}
         </div>
+        <ToastContainer
+          position='top-right'
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme='colored'
+        />
       </section>
     </main>
   )
