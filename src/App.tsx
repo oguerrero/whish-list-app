@@ -11,10 +11,9 @@ export default function App() {
   const [theme, setTheme] = useState('light')
   const [wishList, setWishList] = useState<ItemType[]>([])
   const [page, setPage] = useState('Store')
+  
+  // ! Use only for fetch data from api
   // const [data, setData] = useState(localData)
-
-  // ? Methods for fetching and setting data from api
-  // ? Disabled to avoid down times in api provider
   // const getData = async () => {
   //   const res = await fetch('https://fakestoreapi.com/products')
   //   const data = await res.json()
