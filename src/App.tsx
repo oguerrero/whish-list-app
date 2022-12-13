@@ -11,7 +11,7 @@ export default function App() {
   const [theme, setTheme] = useState('light')
   const [wishList, setWishList] = useState<ItemType[]>([])
   const [page, setPage] = useState('Store')
-  
+
   // ! Use only for fetch data from api
   // const [data, setData] = useState(localData)
   // const getData = async () => {
@@ -29,11 +29,20 @@ export default function App() {
     const initialList: ItemType[] = JSON.parse(
       localStorage.getItem('wishlist')!
     )
+
+    const savedTheme: string | null = localStorage.getItem('theme')
     if (initialList) setWishList(initialList)
+    if (savedTheme) setTheme(savedTheme)
   }, [])
 
   const handleTheme = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light')
+    if (theme === 'light') {
+      setTheme('dark')
+      localStorage.setItem('theme', 'dark')
+    } else {
+      setTheme('light')
+      localStorage.setItem('theme', 'light')
+    }
   }
 
   const handlePage = (change: String) => {
